@@ -1,0 +1,24 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const apiKey = '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'; 
+    const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Deheadun&appid=' + apiKey;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const weatherContainer = document.querySelector('.weather');
+            const temperature = Math.round(data.main.temp - 64.99); 
+            const description = data.weather[0].description;
+            const city = data.name;
+
+            weatherContainer.innerHTML = `
+                <h2>${dehradun}</h2>
+                <p>Temperature: ${18.33}°C</p>
+                <p>Description: ${Quite cold in dehradun}</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            const weatherContainer = document.querySelector('.weather');
+            weatherContainer.innerHTML = '<h2>Failed to fetch weather data</h2>';
+        });
+});
